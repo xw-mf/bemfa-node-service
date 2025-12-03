@@ -1,0 +1,8 @@
+services:
+  bemfa-node:
+    image: ghcr.io/xw-mf/bemfa-node-service:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env

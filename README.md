@@ -73,6 +73,13 @@
 - 当对小爱说“打开门禁”，Bemfa 会向主题推送消息，一般是 `on`。
 - 服务订阅到该主题后，将自动调用开门接口。
 
+## 使用 GitHub Actions + GHCR 自动部署（推荐）
+- 在仓库新增工作流文件：`.github/workflows/deploy-ghcr.yml`（已提供）。
+- 在仓库 Settings → Actions → General 将 `Workflow permissions` 设置为 `Read and write permissions`。
+- 在仓库 Settings → Secrets and variables → Actions 添加：`SSH_HOST`、`SSH_PORT`、`SSH_USER`、`SSH_PRIVATE_KEY`。
+- 在服务器 `/opt/bemfa` 目录创建 `docker-compose.yml`，可参考 `deploy/docker-compose.example.yml`，并准备 `.env`。
+- 推送到 `main` 后，Actions 会构建并推送镜像到 `ghcr.io/<your-account>/<repo>:latest`，随后通过 SSH 执行 `docker compose pull` 与 `up -d` 完成更新。
+
 ## 需要你提供的信息
 - `DOOR_API_URL`、`DOOR_API_METHOD`、`DOOR_API_HEADERS`、`DOOR_API_BODY` 的实际数据。
 - 如果开门接口需要鉴权，请提供：登录接口的 URL/方法/头/体，以及 Token 在响应中的路径。
