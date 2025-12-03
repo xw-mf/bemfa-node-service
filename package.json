@@ -1,0 +1,17 @@
+{
+  "name": "bemfa-node-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Express service subscribing Bemfa MQTT to trigger door open API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "mqtt": "^5.14.1",
+    "winston": "^3.18.3"
+  }
+}
