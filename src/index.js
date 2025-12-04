@@ -13,7 +13,10 @@ app.use(express.json());
 
 const authClient = new AuthClient(config);
 if (config.auth.enabled) authClient.start();
-const doorClient = new DoorClient(config, config.auth.enabled ? authClient : null);
+const doorClient = new DoorClient(
+  config,
+  config.auth.enabled ? authClient : null
+);
 
 app.get("/health", (req, res) => {
   res.json({ ok: true });

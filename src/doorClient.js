@@ -29,9 +29,10 @@ class DoorClient {
       headers,
       data: this.config.door.body,
     };
-
+    console.log(req, "door_open_request");
     const res = await axios(req);
     logger.info("door_open_called");
+    logger.info("door_open_response", { status: res.status, data: res.data });
     return { status: res.status, data: res.data };
   }
 }
